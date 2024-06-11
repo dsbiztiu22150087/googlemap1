@@ -1,0 +1,84 @@
+```{r}
+d <- read.csv(file = 'https://stats.dip.jp/01_ds/data/campus_location_TIU.csv')
+
+library(DT)
+datatable(d)
+library(leaflet)
+
+leaflet() %>%
+addTiles() %>% 
+addMarkers(lng = d$lng, lat = d$lat,
+           popup = paste0(d$name, '<br>', d$address)) %>% 
+addMiniMap(positio = 'topright') %>%
+addScaleBar(position="bottomleft")
+```
+
+```{r}
+# 新しいデータを作成
+new_data <- data.frame(
+  name = "坂戸キャンパス",
+  address = "〒350-0245 埼玉県坂戸市四日市場８１−１",
+  lat = 35.93415135381432,  # 新しい緯度
+  lng = 139.35391341904952  # 新しい経度
+)
+
+# 新しいデータを既存のデータフレームに追加
+d <- rbind(d, new_data)
+
+write.csv(d, file = "updated_campus_location_TIU.csv", row.names = FALSE)
+
+library(DT)
+library(leaflet)
+
+# 更新されたCSVファイルを読み込む
+d_updated <- read.csv(file = "updated_campus_location_TIU.csv")
+
+# データテーブルを表示
+datatable(d_updated)
+
+# 地図を表示
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = d_updated$lng, lat = d_updated$lat,
+             popup = paste0(d_updated$name, '<br>', d_updated$address)) %>%
+  addMiniMap(position = 'topright') %>%
+  addScaleBar(position = "bottomleft")
+
+
+```
+```{r}
+# 新しいデータを作成
+new_data <- data.frame(
+  name = "池袋キャンパス",
+  address = "〒170-0013 東京都豊島区東池袋４丁目４２−３１",
+  lat = 35.728596674067255,  # 新しい緯度
+  lng = 139.72159228205038  # 新しい経度
+)
+
+# 新しいデータを既存のデータフレームに追加
+d <- rbind(d, new_data)
+
+write.csv(d, file = "updated_campus_location_TIU.csv", row.names = FALSE)
+
+library(DT)
+library(leaflet)
+
+# 更新されたCSVファイルを読み込む
+d_updated <- read.csv(file = "updated_campus_location_TIU.csv")
+
+# データテーブルを表示
+datatable(d_updated)
+
+# 地図を表示
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = d_updated$lng, lat = d_updated$lat,
+             popup = paste0(d_updated$name, '<br>', d_updated$address)) %>%
+  addMiniMap(position = 'topright') %>%
+  addScaleBar(position = "bottomleft")
+
+```
+
+
+
+
